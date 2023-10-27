@@ -1,0 +1,29 @@
+{
+  "overrides": [
+    {
+      "files": "*.tsx",
+      "options": {
+        "singleQuote": true,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.tsx",
+      "options": {
+        "semi": false
+      }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "singleQuote": true
+      }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "semi": false
+      }
+    }
+  ]
+}
