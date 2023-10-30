@@ -8,11 +8,7 @@ interface Props {
   createOrEdit: (activity: Activity) => void;
 }
 
-function ActivityForm({
-  activity: selectedActivity,
-  closeForm,
-  createOrEdit
-}: Props) {
+function ActivityForm({ activity: selectedActivity, closeForm, createOrEdit }: Props) {
   const initialState = selectedActivity ?? {
     id: '',
     title: '',
@@ -29,9 +25,7 @@ function ActivityForm({
     createOrEdit(activity);
   }
 
-  function handleInputChange(
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
+  function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.target;
     setActivity({ ...activity, [name]: value });
   }
@@ -77,12 +71,7 @@ function ActivityForm({
           onChange={handleInputChange}
         />
         <Button floated="right" positive type="submit" content="Submit" />
-        <Button
-          onClick={closeForm}
-          floated="right"
-          type="button"
-          content="Cancel"
-        />
+        <Button onClick={closeForm} floated="right" type="button" content="Cancel" />
       </Form>
     </Segment>
   );

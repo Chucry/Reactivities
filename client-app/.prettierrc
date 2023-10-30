@@ -3,7 +3,7 @@
     {
       "files": "*.tsx",
       "options": {
-        "printWidth": 80,
+        "printWidth": 93,
         "tabWidth": 2,
         "semi": true,
         "singleQuote": true,
@@ -16,7 +16,7 @@
     {
       "files": "*.tsx",
       "options": {
-        "printWidth": 80,
+        "printWidth": 93,
         "tabWidth": 2,
         "semi": true,
         "singleQuote": true,
@@ -29,7 +29,7 @@
     {
       "files": "*.ts",
       "options": {
-        "printWidth": 80,
+        "printWidth": 93,
         "tabWidth": 2,
         "semi": true,
         "singleQuote": true,
@@ -42,7 +42,7 @@
     {
       "files": "*.ts",
       "options": {
-        "printWidth": 80,
+        "printWidth": 93,
         "tabWidth": 2,
         "semi": true,
         "singleQuote": true,
