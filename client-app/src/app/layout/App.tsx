@@ -1,24 +1,31 @@
-import { useEffect, useState } from 'react'
-import { Container } from 'semantic-ui-react'
-import { Activity } from '../models/activity'
-import NavBar from './NavBar'
-import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard'
+import { useEffect, useState } from 'react';
+import { Container } from 'semantic-ui-react';
+import { Activity } from '../models/activity';
+import NavBar from './NavBar';
+import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import { v4 as uuid } from 'uuid';
-import agent from '../api/agent'
+import agent from '../api/agent';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
-  const [selectedActivity, setSelectedActivity] = useState<Activity | undefined>(undefined);
+  const [selectedActivity, setSelectedActivity] = useState<
+    Activity | undefined
+  >(undefined);
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     agent.Activities.list().then((response) => {
-      setActivities(response)
-    })
-  }, [])
+      let activities: Activity[] = [];
+      response.forEach((activity) => {
+        activity.date = activity.date.split('T')[0];
+        activities.push(activity);
+      });
+      setActivities(activities);
+    });
+  }, []);
 
   function handleSelectActivity(id: string) {
-    setSelectedActivity(activities.find(x => x.id === id))
+    setSelectedActivity(activities.find((x) => x.id === id));
   }
 
   function handleCancelSelectActivity() {
@@ -35,13 +42,18 @@ function App() {
   }
 
   function handleCreateOrEditActivity(activity: Activity) {
-    activity.id ? setActivities([...activities.filter(x => x.id !== activity.id), activity]) : setActivities([...activities, { ...activity, id: uuid() }]);
+    activity.id
+      ? setActivities([
+          ...activities.filter((x) => x.id !== activity.id),
+          activity
+        ])
+      : setActivities([...activities, { ...activity, id: uuid() }]);
     setEditMode(false);
     setSelectedActivity(activity);
   }
 
   function handleDeleteActivity(id: string) {
-    setActivities([...activities.filter(x => x.id !== id)]);
+    setActivities([...activities.filter((x) => x.id !== id)]);
   }
 
   return (
@@ -57,10 +69,11 @@ function App() {
           openForm={handleFormOpen}
           closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
-          deleteActivity={handleDeleteActivity} />
+          deleteActivity={handleDeleteActivity}
+        />
       </Container>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,5 +1,5 @@
-import { Button, Card, Image } from "semantic-ui-react"
-import { Activity } from "../../../app/models/activity"
+import { Button, Card, Image } from 'semantic-ui-react';
+import { Activity } from '../../../app/models/activity';
 
 interface Props {
   activity: Activity;
@@ -16,18 +16,26 @@ function ActivityDetails({ activity, cancelSelectActivity, openForm }: Props) {
         <Card.Meta>
           <span>{activity.date}</span>
         </Card.Meta>
-        <Card.Description>
-          {activity.description}
-        </Card.Description>
+        <Card.Description>{activity.description}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Button.Group widths='2'>
-          <Button onClick={() => openForm(activity.id)} basic color='blue' content='Edit' />
-          <Button onClick={cancelSelectActivity} basic color='grey' content='Cancel' />
+        <Button.Group widths="2">
+          <Button
+            onClick={() => openForm(activity.id)}
+            basic
+            color="blue"
+            content="Edit"
+          />
+          <Button
+            onClick={cancelSelectActivity}
+            basic
+            color="grey"
+            content="Cancel"
+          />
         </Button.Group>
       </Card.Content>
     </Card>
-  )
+  );
 }
 
-export default ActivityDetails
+export default ActivityDetails;
