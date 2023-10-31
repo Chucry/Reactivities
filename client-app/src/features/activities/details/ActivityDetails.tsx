@@ -1,12 +1,13 @@
 import { Button, Card, Image } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores/store';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
+import { observer } from 'mobx-react-lite';
 
 function ActivityDetails() {
   const { activityStore } = useStore();
   const { selectedActivity: activity, openForm, cancelSelectedActivity } = activityStore;
 
-  if (!activity) return <LoadingComponent />
+  if (!activity) return <LoadingComponent />;
 
   return (
     <Card fluid>
@@ -28,4 +29,4 @@ function ActivityDetails() {
   );
 }
 
-export default ActivityDetails;
+export default observer(ActivityDetails);

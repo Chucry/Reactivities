@@ -10,3 +10,8 @@ body {
     rgb(32, 167, 172) 89%
   ) !important;
 }
+
+.activity-list {
+  max-height: 800px;
+  overflow: scroll;
+}
