@@ -15,7 +15,7 @@ class ActivityStore {
   }
 
   get activitiesByDate() {
-    return Array.from(this.activityRegistry.values()).sort((a, b) => 
+    return Array.from(this.activityRegistry.values()).sort((a, b) =>
       Date.parse(a.date) - Date.parse(b.date));
   }
 
@@ -23,14 +23,18 @@ class ActivityStore {
     this.setLoadingInitial(true);
     try {
       const activities = await agent.Activities.list();
-      activities.forEach((activity) => {
-        activity.date = activity.date.split('T')[0];
-        this.activityRegistry.set(activity.id, activity);
+      runInAction(() => {
+        activities.forEach((activity) => {
+          activity.date = activity.date.split('T')[0];
+          this.activityRegistry.set(activity.id, activity);
+        });
+        this.setLoadingInitial(false);
       });
-      this.setLoadingInitial(false);
     } catch (error) {
       console.log(error);
-      this.setLoadingInitial(false);
+      runInAction(() => {
+        this.setLoadingInitial(false);
+      });
     }
   };
 
